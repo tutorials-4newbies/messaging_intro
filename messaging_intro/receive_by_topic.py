@@ -9,7 +9,7 @@ def main():
 
     # Note we declare on both sides
     channel.exchange_declare(exchange='library', exchange_type='topic')
-    raichman = channel.queue_declare('economic')
+    raichman = channel.queue_declare('economics')
     segol = channel.queue_declare('science')
 
     # Note: we need to tell the queue to listen to a specific exchange
@@ -24,7 +24,7 @@ def main():
         sleep_time = body.count(b'.')
         print(f"Sleep seconds: {sleep_time}")
         time.sleep(sleep_time)
-        ch.basic_ack(delivery_tag=method.delivery_tag)
+        # ch.basic_ack(delivery_tag=method.delivery_tag)
 
     #
     channel.basic_consume(raichman.method.queue, on_message_callback=callback)
